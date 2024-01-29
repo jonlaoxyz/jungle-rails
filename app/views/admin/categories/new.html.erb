@@ -1,0 +1,36 @@
+<section class="admin-categories-new">
+
+  <header class="page-header">
+    <h1>Admin &raquo; New Category</h1>
+  </header>
+
+  <div class="well mb-3">
+    <%= link_to 'All Categories', [:admin, :categories], class: 'btn btn-info' %>
+  </div>
+
+  <%= form_with(model: @category, url: admin_categories_path, method: :post) do |form| %>
+    <% if @category.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@category.errors.count, 'error') %> prohibited this category from being saved:</h2>
+  
+        <ul>
+          <% @category.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+  
+    <div class="actions mt-3 mb-5">
+      <%= form.submit 'Create Category', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+  <%= link_to 'Back', admin_categories_path %>
+
+</section>
