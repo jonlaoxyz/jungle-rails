@@ -1,0 +1,25 @@
+<h1>Login</h1>
+
+<%= form_with(url: login_path, method: :post) do |form| %>
+  <% if flash[:alert] %>
+    <div id="error_explanation">
+      <p><%= flash[:alert] %></p>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Login', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', root_path %>
