@@ -6,11 +6,12 @@
     <h1>Sign-up</h1>
   </header>
   <article class="new-user">
-  <%= form_with(model: @user, url: users_path, method: :post) do |form| %>
-    <% if @user.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@user.errors.count, 'error') %> prohibited this user from being saved:</h2>
   
+  <%= form_with(model: @user, url: users_path, method: :post, class: 'needs-validation') do |form| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <h3><%= pluralize(@user.errors.count, 'error') %> prohibited this user from being saved:</h3>
+    
         <ul>
           <% @user.errors.full_messages.each do |message| %>
             <li><%= message %></li>
@@ -19,32 +20,36 @@
       </div>
     <% end %>
   
-    <div class="field">
-      <%= form.label :first_name %>
-      <%= form.text_field :first_name %>
+    <div class="mb-3 row">
+      <div class="col-md-6">
+        <%= form.label :first_name, class: 'form-label' %>
+        <%= form.text_field :first_name, class: 'form-control', required: true %>
+      </div>
+  
+      <div class="col-md-6">
+        <%= form.label :last_name, class: 'form-label' %>
+        <%= form.text_field :last_name, class: 'form-control', required: true %>
+      </div>
     </div>
   
-    <div class="field">
-      <%= form.label :last_name %>
-      <%= form.text_field :last_name %>
+    <div class="mb-3">
+      <%= form.label :email, class: 'form-label' %>
+      <%= form.email_field :email, class: 'form-control', required: true %>
     </div>
   
-    <div class="field">
-      <%= form.label :email %>
-      <%= form.email_field :email %>
+    <div class="mb-3 row">
+      <div class="col-md-6">
+        <%= form.label :password, class: 'form-label' %>
+        <%= form.password_field :password, class: 'form-control', required: true %>
+      </div>
+  
+      <div class="col-md-6">
+        <%= form.label :password_confirmation, class: 'form-label' %>
+        <%= form.password_field :password_confirmation, class: 'form-control', required: true %>
+      </div>
     </div>
   
-    <div class="field">
-      <%= form.label :password %>
-      <%= form.password_field :password %>
-    </div>
-  
-    <div class="field">
-      <%= form.label :password_confirmation %>
-      <%= form.password_field :password_confirmation %>
-    </div>
-  
-    <div class="actions">
+    <div class="mb-4">
       <%= form.submit 'Sign Up', class: 'btn btn-primary' %>
     </div>
   <% end %>

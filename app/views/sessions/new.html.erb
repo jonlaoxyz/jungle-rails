@@ -1,25 +1,43 @@
-<h1>Login</h1>
+<section class="new-users-show">
+  <header class="page-header">
+    <h1>Login</h1>
+  </header>
+  <article class="login-user">
 
-<%= form_with(url: login_path, method: :post) do |form| %>
-  <% if flash[:alert] %>
-    <div id="error_explanation">
-      <p><%= flash[:alert] %></p>
+  <div class="container mb-5">
+  <div class="row justify-content-left">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <%= form_with(url: login_path, method: :post, class: 'needs-validation') do |form| %>
+            <% if flash[:alert] %>
+              <div id="error_explanation" class="alert alert-danger">
+                <p><%= flash[:alert] %></p>
+              </div>
+            <% end %>
+
+            <div class="mb-3">
+              <%= form.label :email, class: 'form-label' %>
+              <%= form.email_field :email, class: 'form-control', required: true %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :password, class: 'form-label' %>
+              <%= form.password_field :password, class: 'form-control', required: true %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.submit 'Login', class: 'btn btn-primary btn-block' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.email_field :email %>
   </div>
+</div>
 
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
+  <%= link_to 'Back', root_path %>
 
-  <div class="actions">
-    <%= form.submit 'Login', class: 'btn btn-primary' %>
-  </div>
-<% end %>
+  </article>
 
-<%= link_to 'Back', root_path %>
+</section>
